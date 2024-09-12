@@ -134,3 +134,23 @@ function renderFoodsSection(data) {
     foodsSection.append(food);
   });
 }
+
+// add to cart function
+function addToCartList(productId, productList) {
+  const foundedProduct = productList.find((item) => item.id === productId);
+
+  const productInCartIndex = cartList.findIndex(
+    (item) => item.id === productId
+  );
+
+  if (productInCartIndex === -1) {
+    // Product does not exist in Cart
+    cartList.push({ ...foundedProduct, qty: 1 });
+  } else {
+    // Product does exist in Cart
+    cartList[productInCartIndex].qty++;
+  }
+  updateProductQty(productId);
+  changeProductTotalPrice(productId);
+  updateCart();
+}
