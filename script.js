@@ -183,3 +183,19 @@ function updateCart() {
   changeSubTotalPrice();
   changeTotalPrice();
 }
+
+// change service price
+function changeServicePrice() {
+  let total = 0;
+  let totalPrice = 0;
+
+  cartList.forEach((item) => {
+    total += item.qty;
+    totalPrice += item.qty * parseInt(item.price);
+  });
+
+  const serviceCost = totalPrice * 0.09 + 1200;
+
+  const ServicePriceElement = document.getElementById("check-out-service");
+  ServicePriceElement.innerText = addComma(serviceCost);
+}
