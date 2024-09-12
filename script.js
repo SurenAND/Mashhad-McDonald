@@ -320,3 +320,23 @@ function purchaseBtnClicked(cartList) {
     purchaseBtn.classList.toggle("animate__headShake");
   }
 }
+
+// order detail in popup
+function ordersDetailInPopUp() {
+  const foodsDetail = document.querySelector(".foods-details");
+  cartList.forEach((item) => {
+    const foodDetail = document.createElement("section");
+    foodDetail.classList.add("food-details");
+
+    const foodDetailName = document.createElement("p");
+    foodDetailName.classList.add("food-details-name");
+    foodDetailName.innerText = item.name;
+
+    const foodDetailQty = document.createElement("p");
+    foodDetailQty.classList.add("food-details-qty");
+    foodDetailQty.innerText = item.qty;
+
+    foodDetail.append(foodDetailName, foodDetailQty);
+    foodsDetail.append(foodDetail);
+  });
+}
