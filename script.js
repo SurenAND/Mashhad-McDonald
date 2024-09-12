@@ -244,3 +244,23 @@ function changeTotalPrice() {
     ServicePriceElement.innerText = 0;
   }
 }
+
+// remove from cart
+function removeFromCartList(productId) {
+  const foundedProductInCart = cartList.find((item) => item.id === productId);
+
+  const productInCartIndex = cartList.findIndex(
+    (item) => item.id === productId
+  );
+
+  if (foundedProductInCart.qty === 0) {
+    // Product does not exist in Cart
+    cartList.splice(productInCartIndex, 1);
+  } else {
+    // Product does exist in Cart
+    cartList[productInCartIndex].qty--;
+  }
+  updateProductQty(productId);
+  changeProductTotalPrice(productId);
+  updateCart();
+}
