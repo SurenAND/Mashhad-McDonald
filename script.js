@@ -360,3 +360,18 @@ function purchaseSuccessfulPopUp() {
     }
   });
 }
+
+// add comma per each 3 digits
+function addComma(num) {
+  if (num === null) return;
+
+  return num
+    .toString()
+    .split("")
+    .reverse()
+    .map((digit, index) =>
+      index != 0 && index % 3 === 0 ? `${digit},` : digit
+    )
+    .reverse()
+    .join("");
+}
