@@ -300,3 +300,23 @@ function toggleDiscountAnimation() {
   discountSec.classList.toggle("animate__animated");
   discountSec.classList.toggle("animate__headShake");
 }
+
+// purchase
+const purchaseBtn = document.querySelector(".check-out-purchase-btn");
+
+purchaseBtn.addEventListener("click", () => {
+  purchaseBtnClicked(cartList);
+});
+
+function purchaseBtnClicked(cartList) {
+  if (cartList.length > 0) {
+    ordersDetailInPopUp();
+    purchaseSuccessfulPopUp();
+    cartList.splice(0, cartList.length);
+    updateCart();
+  } else {
+    // FIXME
+    purchaseBtn.classList.toggle("animate__animated");
+    purchaseBtn.classList.toggle("animate__headShake");
+  }
+}
