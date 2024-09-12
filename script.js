@@ -264,3 +264,39 @@ function removeFromCartList(productId) {
   changeProductTotalPrice(productId);
   updateCart();
 }
+
+// handle discount
+const discountClick = document.querySelector(".discount-input-icon");
+
+const discountCodes = [
+  { discountCode: "discount5", discountValue: 5000 },
+  { discountCode: "discount10", discountValue: 10000 },
+  { discountCode: "discount20", discountValue: 20000 },
+  { discountCode: "discount30", discountValue: 30000 },
+];
+
+discountClick.addEventListener("click", handleDiscount);
+
+function handleDiscount() {
+  const discountInput = document.getElementById("discount");
+  const checkOutDiscount = document.getElementById("check-out-discount");
+  const discountFound = discountCodes.find((item) => {
+    return item.discountCode === discountInput.value;
+  });
+
+  if (discountFound) {
+    discount = discountFound.discountValue;
+    checkOutDiscount.innerText = addComma(discount);
+    updateCart();
+  } else {
+    // FIXME
+    toggleDiscountAnimation();
+    discountInput.value = "کد نامعتبر!";
+  }
+}
+
+function toggleDiscountAnimation() {
+  const discountSec = document.querySelector(".discount-input");
+  discountSec.classList.toggle("animate__animated");
+  discountSec.classList.toggle("animate__headShake");
+}
