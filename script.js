@@ -35,6 +35,9 @@ const fastFoods = [
 // CartList
 const cartList = [];
 
+// get foods section
+const foodsSection = document.getElementById("foods");
+
 // render foods on page load
 window.addEventListener("DOMContentLoaded", () => {
   renderFoodsSection(fastFoods);
