@@ -31,3 +31,6 @@ const fastFoods = [
   { id: 9, image: "coca-cola", name: "نوشابه کوکاکولا", price: "23000" },
   { id: 10, image: "fanta", name: "نوشابه فانتا", price: "23000" },
 ];
+
+// CartList
+const cartList = [];
