@@ -199,3 +199,17 @@ function changeServicePrice() {
   const ServicePriceElement = document.getElementById("check-out-service");
   ServicePriceElement.innerText = addComma(serviceCost);
 }
+
+// change sub total price
+function changeSubTotalPrice() {
+  let total = 0;
+  let totalPrice = 0;
+
+  cartList.forEach((item) => {
+    total += item.qty;
+    totalPrice += item.qty * parseInt(item.price);
+  });
+
+  const totalPriceElement = document.getElementById("check-out-sum");
+  totalPriceElement.innerText = addComma(totalPrice);
+}
