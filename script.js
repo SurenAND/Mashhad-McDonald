@@ -176,3 +176,10 @@ function changeProductTotalPrice(id) {
     pTotalPrice.innerText = addComma(totalPrice);
   });
 }
+
+// Update cart
+function updateCart() {
+  changeServicePrice();
+  changeSubTotalPrice();
+  changeTotalPrice();
+}
