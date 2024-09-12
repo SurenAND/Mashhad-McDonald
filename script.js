@@ -340,3 +340,23 @@ function ordersDetailInPopUp() {
     foodsDetail.append(foodDetail);
   });
 }
+
+// purchase successful popup
+function purchaseSuccessfulPopUp() {
+  const psModal = document.querySelector(".purchase-successful-modal");
+  psModal.style.display = "flex";
+  const mainPageSections = document.querySelector(".main-section");
+  mainPageSections.style.display = "none";
+
+  //close modal
+  const close = document.querySelector(".close");
+  close.addEventListener("click", () => {
+    window.location.reload();
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target === psModal) {
+      window.location.reload();
+    }
+  });
+}
