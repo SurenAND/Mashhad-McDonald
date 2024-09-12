@@ -213,3 +213,34 @@ function changeSubTotalPrice() {
   const totalPriceElement = document.getElementById("check-out-sum");
   totalPriceElement.innerText = addComma(totalPrice);
 }
+
+// change cart total price
+let discount = 0;
+function changeTotalPrice() {
+  let total = 0;
+  let subTotalPrice = 0;
+  let totalPrice = 0;
+
+  cartList.forEach((item) => {
+    total += item.qty;
+    subTotalPrice += item.qty * parseInt(item.price);
+  });
+
+  const serviceCost = subTotalPrice * 0.09 + 1200;
+
+  if (discount) {
+    totalPrice = subTotalPrice + serviceCost - discount;
+  } else {
+    if (subTotalPrice === 0) {
+      totalPrice = subTotalPrice;
+    } else {
+      totalPrice = subTotalPrice + serviceCost;
+    }
+  }
+
+  const ServicePriceElement = document.getElementById("check-out-total");
+  ServicePriceElement.innerText = addComma(totalPrice);
+  if (totalPrice < 0) {
+    ServicePriceElement.innerText = 0;
+  }
+}
