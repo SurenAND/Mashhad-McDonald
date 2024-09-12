@@ -34,3 +34,103 @@ const fastFoods = [
 
 // CartList
 const cartList = [];
+
+// render foods on page load
+window.addEventListener("DOMContentLoaded", () => {
+  renderFoodsSection(fastFoods);
+});
+
+// render foods function
+function renderFoodsSection(data) {
+  data.forEach((item) => {
+    // create food article
+    const food = document.createElement("article");
+    food.className = "food";
+    food.id = `food-${item.id}`;
+
+    // food's image
+    const foodImage = document.createElement("img");
+    foodImage.src = `assets/images/${item.image}.png`;
+    foodImage.alt = `${item.image}`;
+
+    // food's info section
+    const foodInfo = document.createElement("section");
+    foodInfo.className = "food-info";
+
+    // food's Name
+    const foodName = document.createElement("h3");
+    foodName.className = "food-name";
+    foodName.innerText = `${item.name}`;
+
+    // food's Price
+    const foodPrice = document.createElement("p");
+    foodPrice.className = "food-price";
+    foodPrice.innerText = `${addComma(item.price)} تومان`;
+
+    // food's QTY section
+    const foodQty = document.createElement("section");
+    foodQty.className = "food-qty";
+
+    // food's increase qty icon
+    const foodQtyInc = document.createElement("span");
+    foodQtyInc.classList.add("increase-icon", "cursor-pointer", "icon-active");
+    foodQtyInc.innerText = "+";
+    foodQtyInc.addEventListener("click", (e) => {
+      addToCartList(+e.target.closest(".food").id.split("-")[1], fastFoods);
+    });
+    foodQtyInc.addEventListener("mousedown", (e) => {
+      const addInterval = setInterval(() => {
+        addToCartList(+e.target.closest(".food").id.split("-")[1], fastFoods);
+      }, 200);
+
+      window.addEventListener(
+        "mouseup",
+        () => {
+          clearInterval(addInterval);
+        },
+        { once: true }
+      );
+    });
+
+    // food's qty input
+    const foodQtyInput = document.createElement("span");
+    foodQtyInput.className = "food-qty-input";
+    foodQtyInput.id = `food-qty-input-${item.id}`;
+    foodQtyInput.innerText = "0";
+
+    // food's decrease qty icon
+    const foodQtyDec = document.createElement("span");
+    foodQtyDec.classList.add("decrease-icon", "cursor-pointer", "icon-active");
+    foodQtyDec.innerText = "-";
+    foodQtyDec.addEventListener("click", (e) => {
+      removeFromCartList(item.id);
+    });
+    foodQtyDec.addEventListener("mousedown", (e) => {
+      const removeInterval = setInterval(() => {
+        removeFromCartList(item.id);
+      }, 200);
+
+      window.addEventListener(
+        "mouseup",
+        () => {
+          clearInterval(removeInterval);
+        },
+        { once: true }
+      );
+    });
+
+    // total food price
+    const foodTotalPrice = document.createElement("p");
+    foodTotalPrice.classList.add(
+      "food-total-price",
+      `food-total-price-${item.id}`
+    );
+    foodTotalPrice.innerHTML = `<span id="food-total-price-${item.id}">0</span> تومان`;
+
+    // appends
+    foodQty.append(foodQtyInc, foodQtyInput, foodQtyDec);
+    foodInfo.append(foodName, foodPrice, foodQty);
+    food.append(foodImage, foodInfo, foodTotalPrice);
+    foodsSection.append(food);
+  });
+}
