@@ -164,3 +164,15 @@ function updateProductQty(id) {
     pTotalQty.innerText = total;
   });
 }
+
+// change product total price
+function changeProductTotalPrice(id) {
+  cartList.forEach((item) => {
+    let total = 0;
+    let totalPrice = 0;
+    total += item.qty;
+    totalPrice += item.qty * parseInt(item.price);
+    const pTotalPrice = document.getElementById(`food-total-price-${id}`);
+    pTotalPrice.innerText = addComma(totalPrice);
+  });
+}
