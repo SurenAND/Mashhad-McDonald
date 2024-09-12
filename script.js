@@ -154,3 +154,13 @@ function addToCartList(productId, productList) {
   changeProductTotalPrice(productId);
   updateCart();
 }
+
+// update product Quantity
+function updateProductQty(id) {
+  cartList.forEach((item) => {
+    let total = 0;
+    total += item.qty;
+    const pTotalQty = document.getElementById(`food-qty-input-${id}`);
+    pTotalQty.innerText = total;
+  });
+}
